@@ -1,0 +1,22 @@
+<textarea></textarea>
+<button>submit</button>
+        <div class="text"></div>
+<script>
+    var btn = document.querySelector('button');
+    btn.addEventListener('click', function() {
+        var text = document.querySelector('.text');
+        var textval = document.querySelector('textarea');
+    var texthtml = `
+             <p>user: ${textval.value}</p>
+    `
+    textval.value = '';
+    text.insertAdjacentHTML('beforeend', texthtml);
+    addata = `insert into customers (id,firstname,lastname)
+    values(id,'user',''aaaa');`
+    config.query(addata, function (err, result) {
+      if (err) throw err;
+      console.log('all good!')
+    });
+ })
+ 
+</script>
