@@ -1,6 +1,7 @@
 <textarea></textarea>
-<button>submit</button>
+<button id="bton">submit</button>
         <div class="text"></div>
+<script src="main.js"></script>
 <script>
     var btn = document.querySelector('button');
     btn.addEventListener('click', function() {
@@ -11,12 +12,24 @@
     `
     textval.value = '';
     text.insertAdjacentHTML('beforeend', texthtml);
-    addata = `insert into customers (id,firstname,lastname)
-    values(id,'user',''aaaa');`
-    config.query(addata, function (err, result) {
+    const config = mysql.createConnection({
+user: 'root',
+host: 'localhost',
+password: 'Password321!',
+database: 'customerdb'
+});
+config.connect(function(err) {
+    if (err) throw err;
+    config.query("select * from customerdb.customers;", function (err, result) {
       if (err) throw err;
-      console.log('all good!')
+      req.send(result);
     });
+  });
  })
  
 </script>
+<style>
+  .text {
+    font-family: monospace;
+  }
+</style>
