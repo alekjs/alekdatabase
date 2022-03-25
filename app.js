@@ -1,6 +1,6 @@
-require('dotenv').config();
-const mysql = require('mysql');
 const express = require('express');
+const BaseData = require('./data');
+const data = new BaseData();
 const app = express();
 app.use(express.static('public'));
 const port = 3000;
@@ -10,18 +10,11 @@ app.get('/', (req, res) => {
   res.sendFile('./public/main.html', dir);
 })
 
-app.get('/database', (res, req) => {
- const config = mysql.createConnection({
-  user: process.env.USER,
-  host: process.env.HOST,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE
-  });
-addata = `select * from customerdb.customers;`
-  config.query(addata, function (err, result) {
-    if (err) throw err;
-    req.send(result);
-  });
+app.get('/customers', async (req, res) => {
+  await data.connect();
+  const customers = await data.getCustomers();
+  console.log(customers);
+  res.send(JSON.stringify(customers));
 })
 
 app.listen(3000, function() {
