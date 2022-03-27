@@ -3,27 +3,42 @@ const mysql = require('mysql');
 class BaseData {
     db = null;
 
-    connect() {
-        try {
+    constructor() {
         this.db = mysql.createConnection({
             user: process.env.USER,
             host: process.env.HOST,
             password: process.env.PASSWORD,
             database: process.env.DATABASE
-            });
-        }
-        catch (err) {
-            console.log(err);
-        }
+        });
+        this.db.connect();
     }
 
-    async getCustomers () {
-        if (!this.db) {
+    getCustomers () {
+        const query = `select * from customerdb.customers;`
+
+        const promise = new Promise((resolve, reject) => {
+            this.db.query(query, function (error, results, fields) {
+                if (error) throw error;
+                resolve(results);
+            });
+        });
+        return promise;
+    }
+
+    addCustomer (username, content, msgtime) {
+        if(!content || !username || !msgtime) {
             return;
         }
-        const query = `select * from customerdb.customers;`
-        const result = await this.db.query(query);
-        return result;
+        const query = `insert into customers (username,content,msgtime)
+        values('${username}','${content}','${msgtime}');`
+
+        const promise = new Promise((resolve, reject) => {
+            this.db.query(query, function (error, results, fields) {
+                if (error) throw error;
+                resolve(results);
+            });
+        });
+        return promise;
     }
 }
 

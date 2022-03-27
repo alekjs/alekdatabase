@@ -1,35 +1,15 @@
+<!DOCTYPE html>
+<body>
 <textarea></textarea>
-<button id="bton">submit</button>
-        <div class="text"></div>
-<script src="main.js"></script>
-<script>
-    var btn = document.querySelector('button');
-    btn.addEventListener('click', function() {
-        var text = document.querySelector('.text');
-        var textval = document.querySelector('textarea');
-    var texthtml = `
-             <p>user: ${textval.value}</p>
-    `
-    textval.value = '';
-    text.insertAdjacentHTML('beforeend', texthtml);
-    const config = mysql.createConnection({
-user: 'root',
-host: 'localhost',
-password: 'Password321!',
-database: 'customerdb'
-});
-config.connect(function(err) {
-    if (err) throw err;
-    config.query("select * from customerdb.customers;", function (err, result) {
-      if (err) throw err;
-      req.send(result);
-    });
-  });
- })
- 
-</script>
+<button>submit</button>
+      <div class="text"></div>
+<script src="script.js"></script>
+</body>
 <style>
   .text {
     font-family: monospace;
+  }
+  .time {
+    color: color;
   }
 </style>
