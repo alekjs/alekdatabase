@@ -1,1 +1,1 @@
-Hey, uh, so, I put my password in my code, whoops. I changed my database password so don't try LOL
+Hey, uh, so, I put my password in my code, whoops. I changed my database password so don't try, i've added all my super secret coding stuff in a .env file and with the power of a .gitignore file, no more database password. BEGONE HACKERS!
