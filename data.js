@@ -13,6 +13,34 @@ class BaseData {
         this.db.connect();
     }
 
+    getThreads () {
+        const query = `select * from customerdb.threads;`
+
+        const promise = new Promise((resolve, reject) => {
+            this.db.query(query, function (error, results, fields) {
+                if (error) throw error;
+                resolve(results);
+            });
+        });
+        return promise;
+    }
+
+    addThread (creator, title, threadtime) {
+        if(!creator || !title || !threadtime) {
+            return;
+        }
+        const query = `insert into threads (creator,title,threadtime)
+        values("${creator}","${title}","${threadtime}");`
+
+        const promise = new Promise((resolve, reject) => {
+            this.db.query(query, function (error, results, fields) {
+                if (error) throw error;
+                resolve(results);
+            });
+        });
+        return promise;
+    }
+
     getCustomers () {
         const query = `select * from customerdb.customers;`
 
@@ -30,7 +58,7 @@ class BaseData {
             return;
         }
         const query = `insert into customers (username,content,msgtime)
-        values('${username}','${content}','${msgtime}');`
+        values("${username}","${content}","${msgtime}");`
 
         const promise = new Promise((resolve, reject) => {
             this.db.query(query, function (error, results, fields) {

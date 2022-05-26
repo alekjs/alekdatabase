@@ -1,4 +1,5 @@
 var btn = document.querySelector('button');
+
 btn.addEventListener('click', function() {
     var textval = document.querySelector('textarea');
     updateUsers(textval.value);
@@ -7,9 +8,10 @@ btn.addEventListener('click', function() {
         headers: {
         'Content-Type': 'application/json',
         },
-        body: JSON.stringify({username: 'user', content: textval.value, msgtime: new Date().toLocaleString()}),
+        body: JSON.stringify({username: 'user', content: textval.value, msgtime: new Date().toLocaleString(navigator.language, { hour12: false })}),
     }) 
     textval.value = '';
+    window.location.reload();
 })
 
 function updateUsers(name) {
@@ -28,7 +30,9 @@ function getUsers() {
             {var text = document.querySelector('.text');
             var userhtml = `
 
-                 <p><div class="time">${item.msgtime}</div>${item.username}: ${item.content}<p>
+                 <p>
+                 <div class="time">${item.msgtime}</div>
+                 ${item.username}: ${item.content}<p>
             `
             text.insertAdjacentHTML('beforeend', userhtml);}
     ));
