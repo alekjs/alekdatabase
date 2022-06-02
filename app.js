@@ -16,6 +16,12 @@ app.get('/customers', async (req, res) => {
   res.send(customers);
 })
 
+app.post('/deletethread', async (req, res) => {
+  const {newthreadno, id} = req.body;
+  data.deleteThread(newthreadno, id);
+  res.sendStatus(200);
+})
+
 app.post('/addcustomer', async (req, res) => {
   const {username, content, msgtime} = req.body;
 console.log(`${username} said "${content}" at ${msgtime}`);
@@ -34,10 +40,28 @@ app.get('/threads', async (req, res) => {
   res.sendFile('./public/threads.html', dir);
 })
 
+app.get('/comments', async (req, res) => {
+  const comments = await data.getComments();
+  res.send(comments);
+})
+
+app.post('/addcomment', async (req, res) => {
+  const {username, content, comment_time, threadid} = req.body;
+  if(!username || !content || !comment_time || !threadid) {
+    return;
+}
+console.log(`${username} said "${content}" at ${comment_time} on thread id ${threadid}`);
+  data.addComment(username, content, comment_time, threadid);
+  res.sendStatus(200);
+})
+
 app.post('/addthread', async (req, res) => {
-  const {creator, title, threadtime} = req.body;
-console.log(`${creator} created the post "${title}"`);
-  data.addThread(creator, title, threadtime);
+  const {creator, title, threadtime, content} = req.body;
+  if(!creator || !title || !threadtime || !content) {
+    return;
+}
+console.log(`${creator} created the post "${title}" at ${threadtime}`);
+  data.addThread(creator, title, threadtime, content);
   res.sendStatus(200);
 })
 
