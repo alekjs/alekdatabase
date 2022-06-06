@@ -7,4 +7,5 @@ function testfunc(text, text2)
         },
         body: JSON.stringify({newthreadno: text, id: text2}),
     }) 
+    window.location.reload();
 }

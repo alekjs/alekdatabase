@@ -26,9 +26,8 @@ function updateComments(commentcont, commentuser) {
 function getComments() {
     fetch('/comments')
     .then(response => response.json())
-    .then(data => 
-        data.forEach(item => 
-           {
+    .then(data =>
+        data.forEach(item => {
             if(item.threadid == [window.location.search.slice(4)])
             {
             var text = document.querySelector('.text');

@@ -25,6 +25,18 @@ class BaseData {
         return promise;
     }
 
+    getthreadData (dataid) {
+        const query = `SELECT * FROM customerdb.threads where (id=${dataid});`
+
+        const promise = new Promise((resolve, reject) => {
+            this.db.query(query, function (error, results, fields) {
+                if (error) throw error;
+                resolve(results);
+            });
+        });
+        return promise;
+    }
+
     addComment (username, content, comment_time, threadid) {
         if(!username || !content || !comment_time || !threadid) {
             return;
@@ -70,8 +82,7 @@ class BaseData {
     }
 
     deleteThread(autoint, threadtodelete) {
-        const query = `alter table threads auto_increment=${autoint-1};
-        delete from customerdb.threads where (id=${threadtodelete});`
+        const query = `delete from customerdb.threads where (id=${threadtodelete});`
 
         const promise = new Promise((resolve, reject) => {
             this.db.query(query, function (error, results, fields) {

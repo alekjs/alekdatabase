@@ -103,3 +103,7 @@
   .trashlink {
     visibility: hidden;
   }
+
+  .errorback {
+    text-align: center;
+  }

@@ -37,14 +37,13 @@ function getThreads() {
     fetch('/getthreads')
     .then(response => response.json())
     .then(data =>
-        
-        data.forEach(item => 
+        data.forEach(item =>
            {var divb = document.querySelector('.posts');
             var divtext = `<li>
             <a href="">
             <img src="upvotearrow.png" height="8" width="8" title="upvote" class="upvote" style="float:left;padding: 5px 0;">
             </a>
-            <a class="threadlink" href="/threads?id=${item.id}" title="${item.title}, id: ${item.id}" style="text-decoration: none"><div class="threadtitle">${item.title}</a><a href="#" class="trashlink" onclick="testfunc(${data.length}, ${item.id})"><img class="trashcan" src="trashcan.png"></a></div><div class="threadinfo">by ${item.creator}</div>
+            <a class="threadlink" href="/threads?id=${item.id}" title="${item.title}, id: ${item.id}" style="text-decoration: none"><div class="threadtitle">${item.title}</a><a href="" class="trashlink" onclick="testfunc(${data.length}, ${item.id})"><img class="trashcan" src="trashcan.png"></a></div><div class="threadinfo">by ${item.creator}</div>
             </li>`;
         divb.insertAdjacentHTML('beforeend', divtext);}
     ));

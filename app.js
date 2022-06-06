@@ -35,14 +35,43 @@ app.get('/getthreads', async (req, res) => {
 })
 
 app.get('/threads', async (req, res) => {
-  //const threadsdata = await data.getThreads();
-  //res.send(threadsdata[req.query.id-1]);
+  if(isNaN(req.query.id) || !req.query.id) {
+    res.sendFile('./public/nosuchthread.html', dir);
+    return;
+  }
+  
+  const datachecker = await data.getthreadData(req.query.id);
+
+  if(datachecker.length == 0)
+  {
+    res.sendFile('./public/nosuchthread.html', dir);
+  }
+  else
+  {
   res.sendFile('./public/threads.html', dir);
+  }
 })
 
 app.get('/comments', async (req, res) => {
   const comments = await data.getComments();
   res.send(comments);
+})
+
+app.get('/threadsapi/:id', async (req, res) =>
+{
+  if(isNaN(req.params.id) || !req.params.id) {
+    res.status(404).send('no such thread');
+    return;
+  }
+  
+  const threaddata = await data.getthreadData(req.params.id);
+
+  if(threaddata.length == 0)
+  {
+    res.status(404).send('no such thread');
+  }
+  else
+  res.send(threaddata);
 })
 
 app.post('/addcomment', async (req, res) => {
