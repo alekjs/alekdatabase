@@ -24,7 +24,7 @@ app.post('/deletethread', async (req, res) => {
 
 app.post('/addcustomer', async (req, res) => {
   const {username, content, msgtime} = req.body;
-console.log(`${username} said "${content}" at ${msgtime}`);
+console.log(`${username} (${req.ip}) said "${content}" at ${msgtime}`);
   data.addCustomer(username, content, msgtime);
   res.sendStatus(200);
 })
@@ -79,7 +79,7 @@ app.post('/addcomment', async (req, res) => {
   if(!username || !content || !comment_time || !threadid) {
     return;
 }
-console.log(`${username} said "${content}" at ${comment_time} on thread id ${threadid}`);
+console.log(`${username} (${req.ip}) said "${content}" at ${comment_time} on thread id ${threadid}`);
   data.addComment(username, content, comment_time, threadid);
   res.sendStatus(200);
 })
@@ -89,7 +89,7 @@ app.post('/addthread', async (req, res) => {
   if(!creator || !title || !threadtime || !content) {
     return;
 }
-console.log(`${creator} created the post "${title}" at ${threadtime}`);
+console.log(`${creator} (${req.ip}) created the post "${title}" at ${threadtime}`);
   data.addThread(creator, title, threadtime, content);
   res.sendStatus(200);
 })
