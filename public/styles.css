@@ -54,13 +54,14 @@
   }
 
   .logoimg {
-    margin: 8px 0;
+    margin: 10px 0;
+    height: 38px;
   }
 
   .loginlink {
     color: rgb(89, 41, 168);
     float: right;
-    margin: 18px 10px;
+    margin: 22px 10px;
     font-size: 12px;
     text-decoration: none;
   }
@@ -98,6 +99,21 @@
   }
   h2 {
     margin: 0 10px;
+  }
+
+  .infocontainer {
+    position: absolute;
+    top: 52px;
+    left: 118px;
+  }
+
+  .bottomassets {
+    text-align: center;
+    padding: 10px 0;
+  }
+
+  .infolink {
+    font-size: 15px;
   }
 
   .threadlink:hover + .trashlink, .trashlink:hover {

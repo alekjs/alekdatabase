@@ -1,4 +1,5 @@
 const express = require('express');
+const crypto = require('crypto');
 const BaseData = require('./data');
 const data = new BaseData();
 const app = express();
