@@ -8,7 +8,8 @@ class BaseData {
             user: process.env.USER,
             host: process.env.HOST,
             password: process.env.PASSWORD,
-            database: process.env.DATABASE
+            database: process.env.DATABASE,
+            multipleStatements: true
         });
         this.db.connect();
     }
@@ -82,7 +83,7 @@ class BaseData {
     }
 
     deleteThread(autoint, threadtodelete) {
-        const query = `delete from customerdb.threads where (id=${threadtodelete});`
+        const query = `delete from customerdb.threads where (id=${threadtodelete});delete from customerdb.comments where (threadid=${threadtodelete});`
 
         const promise = new Promise((resolve, reject) => {
             this.db.query(query, function (error, results, fields) {

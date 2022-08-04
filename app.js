@@ -9,12 +9,20 @@ const port = 3000;
 const dir = {root: __dirname};
 
 app.get('/', (req, res) => {
-  res.sendFile('./public/main.html', dir);
+  res.sendFile('./public/home.html', dir);
+})
+
+app.get('/search', (req, res) => {
+  res.sendFile('./public/search.html', dir);
 })
 
 app.get('/customers', async (req, res) => {
   const customers = await data.getCustomers();
   res.send(customers);
+})
+
+app.get('/rules', async (req, res) => {
+  res.sendFile('./public/rules.html', dir);
 })
 
 app.post('/deletethread', async (req, res) => {
@@ -40,6 +48,8 @@ app.get('/threads', async (req, res) => {
     res.sendFile('./public/nosuchthread.html', dir);
     return;
   }
+
+
   
   const datachecker = await data.getthreadData(req.query.id);
 

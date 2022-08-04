@@ -2,24 +2,22 @@
 <body>
   <head>
     <link rel="shortcut icon" href="favicon.ico">
-    <title class="title"></title>
+    <title class="title">aforums - home</title>
   </head>
   <div class="back">
   <div class="header">
-    <a href="%" class="loginlink">login</a>
-    <h2 class="headertext"><a href="/" style="text-decoration: none; color: black;"><img class="logoimg" src="altlogo.png" height="38"></a></h2>
+  <a class="loginlink"><input placeholder="search threads" class="searchbox"><button class="searchbutton" style="margin: 0 5px;">search</button></a>
+    <h2 class="headertext"><img class="logoimg" src="altlogo.png" height="38"></h2>
   </div>
   <button class="threadtitle newthread" onclick="window.location.reload();">new thread</button>
   <input class="threadname" maxlength="255" placeholder="name">
   <input class="threadauthor" maxlength="255" placeholder="author">
   <br><textarea class="threadcontext" maxlength="60000" placeholder="content" style="margin: 5px 15px;width: 40.3%;"></textarea>
+  <div class="time" style="font-size: 13px; margin: 0 15px;">*before posting make sure that you are following the <a href="./rules" class="link">community rules</a>.</div>
   <ol class="posts"></ol>
   <!--<div class="bottomassets"><span>hello</span> <span>hello</span></div>-->
   <script src="threaddata.js"></script>
-<script>
-  name = "aforums home";
-</script>
-<script src="title.js"></script>
+<script src="search.js"></script>
 <script src="deletethread.js"></script>
 </body>
 <link rel="stylesheet" href="styles.css">

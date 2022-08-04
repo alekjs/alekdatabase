@@ -34,7 +34,7 @@ function getComments() {
             var id = data[window.location.search.slice(4)-1];
             var userhtml = `
             <p>
-            <div class="time"><a href="/users/${item.username.toLowerCase()}" class="link">${item.username}</a>, ${item.comment_time}</div>
+            <div class="time"><a href="/users/${item.username.toLowerCase()}" class="link">${item.username}</a>, ${item.comment_time}<a href="" class="trashlink" onclick="testfunc(${data.length}, ${item.id})"><img class="trashcan" src="trashcan.png"></a></div>
             ${item.content}</p>
             `
             text.insertAdjacentHTML('beforeend', userhtml);
